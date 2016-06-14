@@ -9,10 +9,13 @@ public class FireWall : MonoBehaviour {
 	public int DistancePerLevel;
 	//Max Velocity (difficulty) allowed by the game (In m/s)
 	public float MaxVelocity;
+	//How far does the frog have to be engulfed in order to lose?
+	public float engulfDistance;
 
 	private int prevLevel;
 	private int level;
 	private GameObject player;
+	private GameState state;
 
 	// Use this for initialization
 	void Start () {
@@ -23,12 +26,23 @@ public class FireWall : MonoBehaviour {
 	void Update () {
 		//Gather the player object
 		player = GameObject.Find("player");
-		//Makes the Fire Container object laterally follow the player.
-		FollowPlayer();
-		//Makes the Fire Container object creep towards the player.
-		CreepForward();
-		//Informs the player when the level has gone up.
-		if (prevLevel != level) {LevelChanged();}
+		state = GameObject.FindObjectOfType<GameState>();
+		if(!state.IsGameOver) {
+			//Makes the Fire Container object laterally follow the player.
+			FollowPlayer();
+			//Makes the Fire Container object creep towards the player while the game is not over.
+			CreepForward();
+			//Check if the fire is engulfing the player If so, game over.
+			if(isPlayerInside()) {
+				state.IsGameOver = true;
+				state.HighScore = (uint) transform.position.z;
+				//print("You lose!");
+			}
+			//Informs the player when the level has gone up.
+			if (prevLevel != level) {LevelChanged();}
+		}
+
+
 	}
 
 	void FollowPlayer() {
@@ -48,5 +62,10 @@ public class FireWall : MonoBehaviour {
 	void LevelChanged() {
 		print("Level " + level + " | Speed increased.");
 		prevLevel = level;
+	}
+
+	bool isPlayerInside() {
+		if(player.transform.position.z < transform.position.z - engulfDistance) 	return true;
+		else 																		return false;
 	}
 }

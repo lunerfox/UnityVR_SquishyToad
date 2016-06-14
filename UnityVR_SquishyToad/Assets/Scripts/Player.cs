@@ -11,9 +11,11 @@ public class Player : MonoBehaviour {
 	private GvrHead FrogHead;
 	private bool JumpReady;
 	private float lastJumpRequestTime = 0.0f;
+	private GameState gameState;
 
 	// Use this for initialization
 	void Start () {
+		gameState = GameObject.FindObjectOfType<GameState>();
 		//Attach the OnTrigger event to PullTrigger Method
 		GvrViewer.Instance.OnTrigger += PullTrigger;
 		rb = GetComponent<Rigidbody>();
@@ -43,7 +45,7 @@ public class Player : MonoBehaviour {
 
 	void OnCollisionStay(Collision collision) {
 		float deltaT = Time.time - lastJumpRequestTime; 
-		if (deltaT < 0.1) {
+		if (deltaT < 0.1 && !gameState.IsGameOver) {
 			Jump ();
 			lastJumpRequestTime = 0;
 		}
