@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 	private Rigidbody rb;
 	private GvrHead FrogHead;
 	private bool JumpReady;
+	private float lastJumpRequestTime = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -19,31 +20,31 @@ public class Player : MonoBehaviour {
 	}
 	
 	private void PullTrigger() {
-		
+		RequestJump();
+	}
+	
+	private void RequestJump() {
+		lastJumpRequestTime = Time.time;
+		rb.WakeUp(); 
+	}
+	
+	private void Jump(){
 		Vector3 projectedVector = Vector3.ProjectOnPlane(FrogHead.Gaze.direction, Vector3.up);
 		Vector3 jumpvector = Vector3.RotateTowards(projectedVector, Vector3.up, JumpAngleInDegrees * Mathf.Deg2Rad, 0);
-		//GazeText.enabled = !GazeText.enabled;
-		print("Trigger Pulled");
-		if(JumpReady) rb.velocity = jumpvector * JumpVelocity;
+		//print("Trigger Pulled");
+		rb.velocity = jumpvector * JumpVelocity;
 	}
 	
-	void OnCollisionEnter(Collision collision)
-	{
-		print("I've Just Collided");
-		JumpReady = true;	
-	}
-	
-	void OnCollisionExit(Collision collision)
-	{
-		print("I'm not longer colliding");	
-		JumpReady = false;	
+	void OnCollisionStay(Collision collision) {
+		float deltaT = Time.time - lastJumpRequestTime; 
+		if (deltaT < 0.1) {
+			Jump ();
+			lastJumpRequestTime = 0;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		FrogHead = FindObjectOfType<GvrHead>();
-		GazeText.text = FrogHead.Gaze.ToString();
-		
-		//print (Gaze.Gaze);
 	}
 }
