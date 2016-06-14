@@ -7,8 +7,9 @@ public class VehicleSpawner : MonoBehaviour {
 	public float heightOffset;
 	public float startOffset;
 	public float laneSpeed;
-
+	public float lifeDistance;
 	private bool direction;
+	private GameObject vehicleObject;
 
 	// Use this for initialization
 	void Start () {
@@ -22,16 +23,19 @@ public class VehicleSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(!vehicleObject) instantiateVehicle();
 	}
 
 	void instantiateVehicle() {
 		int CarType = Random.Range(0, vehiclePrefabs.Length);
-		GameObject vehicleObject = Instantiate(vehiclePrefabs[CarType]);
+		vehicleObject = Instantiate(vehiclePrefabs[CarType]);
 		vehicleObject.transform.position = getPositionOffset();
 		vehicleObject.transform.parent = transform;
-		vehicleObject.GetComponent<Vehicle>().speed = laneSpeed;
-		vehicleObject.GetComponent<Vehicle>().direction = direction;
+
+		Vehicle vehicleScript = vehicleObject.GetComponent<Vehicle>();
+		vehicleScript.speed = laneSpeed;
+		vehicleScript.direction = direction;
+		vehicleScript.lifetime = lifeDistance/laneSpeed;
 	}
 
 	Vector3 getPositionOffset() {
