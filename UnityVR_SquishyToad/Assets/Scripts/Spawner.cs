@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour {
 	public GameObject[] lanePreFabs;
 	public GameObject Player;
 	public float spawnHorizon = 100f;
+	//Should be a positive value. The game will automatically determine if the vehicle should be moving left or right.
 	private float nextLaneOffset = 0f; 
 	
 	// Use this for initialization

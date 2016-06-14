@@ -14,20 +14,22 @@ public class VehicleSpawner : MonoBehaviour {
 	private bool direction;
 	private GameObject vehicleObject;
 	private Player player;
+	private GameState gameState;
 
 	// Use this for initialization
 	void Start () {
 		player = FindObjectOfType<Player>();
+		gameState = FindObjectOfType<GameState>();
 		//pick a direction that all vehicles from this lane travel at.
 		if(Random.Range(0, 2) == 1) 	direction = true;
 		else 							direction = false;
 		print("Direction Set to " + direction);
 		//Create a vehicle.
-		StartCoroutine("Spawn");
+		StartCoroutine("SpawnVehicle");
 	}
 
-	IEnumerator Spawn() {
-		while(true) {
+	IEnumerator SpawnVehicle() {
+		while(!gameState.IsGameOver) {
 			instantiateVehicle();
 			yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
 		}
