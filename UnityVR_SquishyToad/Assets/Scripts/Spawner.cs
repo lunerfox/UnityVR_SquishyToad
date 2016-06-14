@@ -8,7 +8,6 @@ public class Spawner : MonoBehaviour {
 	public Transform spawnerParent;
 
 	public GameObject[] lanePreFabs;
-	public uint numberOfLanes;
 	public GameObject Player;
 	public float spawnHorizon = 100f;
 	private float nextLaneOffset = 0f; 
