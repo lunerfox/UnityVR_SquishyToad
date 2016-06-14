@@ -29,12 +29,18 @@ public class Player : MonoBehaviour {
 	}
 	
 	private void Jump(){
-		Vector3 projectedVector = Vector3.ProjectOnPlane(FrogHead.Gaze.direction, Vector3.up);
+		Vector3 projectedVector = LookDirection();
 		Vector3 jumpvector = Vector3.RotateTowards(projectedVector, Vector3.up, JumpAngleInDegrees * Mathf.Deg2Rad, 0);
 		//print("Trigger Pulled");
 		rb.velocity = jumpvector * JumpVelocity;
 	}
-	
+
+	//Provides the player's view direction in the horizontal.
+	public Vector3 LookDirection()
+	{
+		return Vector3.ProjectOnPlane(FrogHead.Gaze.direction, Vector3.up);
+	}
+
 	void OnCollisionStay(Collision collision) {
 		float deltaT = Time.time - lastJumpRequestTime; 
 		if (deltaT < 0.1) {

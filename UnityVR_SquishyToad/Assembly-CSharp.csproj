@@ -86,6 +86,9 @@
      <Compile Include="Assets\GoogleVR\Scripts\VRDevices\GvrDevice.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\VRDevices\iOSDevice.cs" />
      <Compile Include="Assets\Scripts\FireWall.cs" />
+     <Compile Include="Assets\Scripts\GameOverScreen.cs" />
+     <Compile Include="Assets\Scripts\GameState.cs" />
+     <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <None Include="Assets\GoogleVR\Distortion\GvrDistortion.cginc" />
