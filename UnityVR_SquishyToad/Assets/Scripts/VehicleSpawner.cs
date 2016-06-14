@@ -8,22 +8,34 @@ public class VehicleSpawner : MonoBehaviour {
 	public float startOffset;
 	public float laneSpeed;
 	public float lifeDistance;
+	public int minSpawnInterval;
+	public int maxSpawnInterval;
+
 	private bool direction;
 	private GameObject vehicleObject;
+	private Player player;
 
 	// Use this for initialization
 	void Start () {
+		player = FindObjectOfType<Player>();
 		//pick a direction that all vehicles from this lane travel at.
 		if(Random.Range(0, 2) == 1) 	direction = true;
 		else 							direction = false;
 		print("Direction Set to " + direction);
 		//Create a vehicle.
-		instantiateVehicle();
+		StartCoroutine("Spawn");
 	}
-	
+
+	IEnumerator Spawn() {
+		while(true) {
+			instantiateVehicle();
+			yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
-		if(!vehicleObject) instantiateVehicle();
+		
 	}
 
 	void instantiateVehicle() {
@@ -39,10 +51,11 @@ public class VehicleSpawner : MonoBehaviour {
 	}
 
 	Vector3 getPositionOffset() {
+		Vector3 playerOffset = new Vector3(player.transform.position.x, 0, 0);
 		Vector3 position = transform.position;
 		position += heightOffset * Vector3.up;
-		if(direction) 	position += startOffset * Vector3.right;
-		else 			position += startOffset * Vector3.left;
+		if(direction) 	position += playerOffset + (startOffset * Vector3.right);
+		else 			position += playerOffset + (startOffset * Vector3.left);
 		return position;
 	}
 }

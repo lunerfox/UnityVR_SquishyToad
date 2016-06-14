@@ -23,4 +23,6 @@ public class Vehicle : MonoBehaviour {
 	void removeVehicle() {
 		Destroy(gameObject);
 	}
+
+
 }
