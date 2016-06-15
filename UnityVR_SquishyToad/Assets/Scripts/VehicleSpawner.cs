@@ -23,7 +23,7 @@ public class VehicleSpawner : MonoBehaviour {
 		//pick a direction that all vehicles from this lane travel at.
 		if(Random.Range(0, 2) == 1) 	direction = true;
 		else 							direction = false;
-		print("Direction Set to " + direction);
+		//print("Direction Set to " + direction);
 		//Create a vehicle.
 		StartCoroutine("SpawnVehicle");
 	}

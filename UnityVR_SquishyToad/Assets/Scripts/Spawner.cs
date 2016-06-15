@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour {
 			instance.transform.parent = spawnerParent;
 			
 			//Place the newly prefabbed lane in the correct area.
-			print ("Creating new lane at " + nextLaneOffset);
+			//print ("Creating new lane at " + nextLaneOffset);
 			Vector3 lanePosition = new Vector3(0, 0, nextLaneOffset); 
 			nextLaneOffset += instance.transform.localScale.z;
 			instance.transform.position = lanePosition;

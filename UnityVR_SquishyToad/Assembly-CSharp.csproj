@@ -85,6 +85,7 @@
      <Compile Include="Assets\GoogleVR\Scripts\VRDevices\EditorDevice.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\VRDevices\GvrDevice.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\VRDevices\iOSDevice.cs" />
+     <Compile Include="Assets\Scripts\FireDestroyer.cs" />
      <Compile Include="Assets\Scripts\FireWall.cs" />
      <Compile Include="Assets\Scripts\GameOverScreen.cs" />
      <Compile Include="Assets\Scripts\GameState.cs" />
