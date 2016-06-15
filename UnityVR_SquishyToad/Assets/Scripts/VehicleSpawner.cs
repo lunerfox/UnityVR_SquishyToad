@@ -43,13 +43,17 @@ public class VehicleSpawner : MonoBehaviour {
 	void instantiateVehicle() {
 		int CarType = Random.Range(0, vehiclePrefabs.Length);
 		vehicleObject = Instantiate(vehiclePrefabs[CarType]);
-		vehicleObject.transform.position = getPositionOffset();
-		vehicleObject.transform.parent = transform;
 
 		Vehicle vehicleScript = vehicleObject.GetComponent<Vehicle>();
 		vehicleScript.speed = laneSpeed;
 		vehicleScript.direction = direction;
 		vehicleScript.lifetime = lifeDistance/laneSpeed;
+
+		vehicleObject.transform.position = getPositionOffset();
+		vehicleObject.transform.parent = transform;
+		if(direction) vehicleObject.transform.Rotate(0, 180, 0);
+
+
 	}
 
 	Vector3 getPositionOffset() {
