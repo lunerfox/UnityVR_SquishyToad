@@ -35,6 +35,9 @@ public class Player : MonoBehaviour {
 		Vector3 jumpvector = Vector3.RotateTowards(projectedVector, Vector3.up, JumpAngleInDegrees * Mathf.Deg2Rad, 0);
 		//print("Trigger Pulled");
 		rb.velocity = jumpvector * JumpVelocity;
+		//Play Audio to indicate that a jump has occured.
+		AudioSource bounce = GetComponent<AudioSource>();
+		bounce.Play(); 
 	}
 
 	//Provides the player's view direction in the horizontal.
