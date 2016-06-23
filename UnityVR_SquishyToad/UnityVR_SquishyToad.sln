@@ -1,8 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{684F9B53-A5F1-961C-34AC-C89283CF402D}") = "UnityVR_SquishyToad", "Assembly-CSharp-firstpass.csproj", "{63FC4432-898D-DBC7-E221-F1F8008F68DB}"
-EndProject
 Project("{684F9B53-A5F1-961C-34AC-C89283CF402D}") = "UnityVR_SquishyToad", "Assembly-CSharp.csproj", "{E152E0A2-AB14-2255-DF63-B1D9648A7852}"
 EndProject
 Project("{684F9B53-A5F1-961C-34AC-C89283CF402D}") = "UnityVR_SquishyToad", "Assembly-CSharp-Editor.csproj", "{A6D82CA5-DE09-2220-B252-B852D72864B0}"
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{63FC4432-898D-DBC7-E221-F1F8008F68DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{63FC4432-898D-DBC7-E221-F1F8008F68DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{63FC4432-898D-DBC7-E221-F1F8008F68DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{63FC4432-898D-DBC7-E221-F1F8008F68DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E152E0A2-AB14-2255-DF63-B1D9648A7852}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E152E0A2-AB14-2255-DF63-B1D9648A7852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E152E0A2-AB14-2255-DF63-B1D9648A7852}.Release|Any CPU.ActiveCfg = Release|Any CPU

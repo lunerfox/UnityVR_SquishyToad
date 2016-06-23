@@ -60,6 +60,8 @@ public class FireWall : MonoBehaviour {
 	}
 
 	void LevelChanged() {
+        AudioSource LevelUp = GetComponent<AudioSource>();
+        LevelUp.Play();
 		print("Level " + level + " | Speed increased.");
 		prevLevel = level;
 	}
