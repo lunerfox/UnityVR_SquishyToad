@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Spawns infinite lanes. As the player moves forward, lanes continue to spawn based on a pre-set distance.
+
 public class Spawner : MonoBehaviour {
 
 	//Apply this public variable to the spawner Game object.
@@ -12,7 +14,7 @@ public class Spawner : MonoBehaviour {
 	public float spawnHorizon = 100f;
 	//Should be a positive value. The game will automatically determine if the vehicle should be moving left or right.
 	private float nextLaneOffset = 0f; 
-	
+
 	// Use this for initialization
 	void Start () {
 

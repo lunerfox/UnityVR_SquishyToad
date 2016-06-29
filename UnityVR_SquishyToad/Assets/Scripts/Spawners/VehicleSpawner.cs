@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Spawns vehicles in lanes where this script is attached.
+
 public class VehicleSpawner : MonoBehaviour {
 
-	public GameObject[] vehiclePrefabs;
+	public GameObject[] vehiclePrefabs; //Array of vehicles available
 	public float heightOffset;
 	public float startOffset;
 	public float laneSpeed;
@@ -14,7 +16,7 @@ public class VehicleSpawner : MonoBehaviour {
 	private bool direction;
 	private GameObject vehicleObject;
 	private Player player;
-	private GameState gameState;
+	private GameState gameState; //Contains Get/Set for GameOver and HighScore
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +30,7 @@ public class VehicleSpawner : MonoBehaviour {
 		StartCoroutine("SpawnVehicle");
 	}
 
+	//Routine that's run on specified intervals
 	IEnumerator SpawnVehicle() {
 		while(!gameState.IsGameOver) {
 			instantiateVehicle();

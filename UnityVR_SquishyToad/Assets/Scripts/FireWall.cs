@@ -64,6 +64,7 @@ public class FireWall : MonoBehaviour {
         LevelUp.Play();
 		print("Level " + level + " | Speed increased.");
 		prevLevel = level;
+		state.CurLevel = level;
 	}
 
 	bool isPlayerInside() {

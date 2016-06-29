@@ -20,7 +20,9 @@ public class Player : MonoBehaviour {
 		GvrViewer.Instance.OnTrigger += PullTrigger;
 		rb = GetComponent<Rigidbody>();
 	}
-	
+
+
+
 	private void PullTrigger() {
 		RequestJump();
 	}
