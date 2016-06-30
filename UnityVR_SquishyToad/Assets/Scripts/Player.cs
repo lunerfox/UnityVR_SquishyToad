@@ -33,12 +33,22 @@ public class Player : MonoBehaviour {
 	}
 	
 	private void Jump(){
-		Vector3 projectedVector = LookDirection();
-		Vector3 jumpvector = Vector3.RotateTowards(projectedVector, Vector3.up, JumpAngleInDegrees * Mathf.Deg2Rad, 0);
-		//print("Trigger Pulled");
-		rb.velocity = jumpvector * JumpVelocity;
-		//Play Audio to indicate that a jump has occured.
-		AudioSource bounce = GetComponent<AudioSource>();
+
+        Vector3 projectedVector = LookDirection();
+
+        if (gameState.PwrUpJump) {
+            Vector3 jumpvector = Vector3.RotateTowards(projectedVector, Vector3.up, JumpAngleInDegrees * Mathf.Deg2Rad, 0);
+            rb.velocity = jumpvector * JumpVelocity * 5;
+        }
+        else {
+            Vector3 jumpvector = Vector3.RotateTowards(projectedVector, Vector3.up, JumpAngleInDegrees * Mathf.Deg2Rad, 0);
+            rb.velocity = jumpvector * JumpVelocity;
+        }
+
+		
+		
+        //Play Audio to indicate that a jump has occured.
+        AudioSource bounce = GetComponent<AudioSource>();
 		bounce.Play(); 
 	}
 

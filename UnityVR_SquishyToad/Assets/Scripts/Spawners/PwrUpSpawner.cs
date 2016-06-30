@@ -43,7 +43,6 @@ public class PwrUpSpawner : MonoBehaviour {
 	}
 
 	Vector3 getPositionOffset() {
-		Vector3 playerOffset = new Vector3(player.transform.position.x, 0, 0);
 		Vector3 position = transform.position;
 		//Determine the distance offset based on playerDistOffset
 		int actualDistOffset = Random.Range(-playerDistOffset, playerDistOffset);
