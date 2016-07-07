@@ -21,8 +21,9 @@ public class LethalCollider : MonoBehaviour {
 		if(player && !gameState.IsGameOver)
 		{
 			print("Game Over!");
-			gameState.IsGameOver = true;
-			AudioSource squish = GetComponent<AudioSource>();
+            gameState.IsGameOver = true;
+            gameState.HighScore = transform.position.z;
+            AudioSource squish = GetComponent<AudioSource>();
 			squish.Play();
 		}
 	}

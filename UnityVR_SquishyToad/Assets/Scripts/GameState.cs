@@ -1,27 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour {
 
-	public bool IsGameOver { get; set;}
-	public uint HighScore {get; set;}
-	public int CurLevel {get; set;}
+	public bool IsGameOver   { get; set;}   //Game Over state is HIGH when the player has lost but has not restarted.
+    public bool IsIdle       { get; set;}   //Idle state is HIGH when the player has restarted but not ready
+	public float HighScore    {get; set;}
+	public int CurLevel      {get; set;}
 
     //TODO: Separate power-ups into its own separate handler
     public bool PwrUpJump { get; set;}
     private float PwrUpJumpCooldown;
 
-    void Start () {
-        PwrUpJumpCooldown = 10.0f;
+    void Awake() {
+        //Maintains the game state between scenes
+        DontDestroyOnLoad(transform.gameObject);
     }
 
-	public void ResetGame() {
-		Application.LoadLevel("Main");
-	}
-
-	public void BackToMenu() {
-		Application.LoadLevel("SplashScreen");
-	}
+    void Start () {
+        print("Initialize Super-State (GameState)");
+        PwrUpJumpCooldown = 10.0f;
+        IsGameOver = false;
+        IsIdle = true;
+    }
     
     void Update () {
         if (PwrUpJump) {

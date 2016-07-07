@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour {
 	//All lanes become children of the spawnerParent.
 	public Transform spawnerParent;
 
+    public float spawnStartOffset;       
 	public GameObject[] lanePreFabs;
 	public GameObject Player;
 	public float spawnHorizon = 100f;
@@ -36,7 +37,7 @@ public class Spawner : MonoBehaviour {
 			
 			//Place the newly prefabbed lane in the correct area.
 			//print ("Creating new lane at " + nextLaneOffset);
-			Vector3 lanePosition = new Vector3(0, 0, nextLaneOffset); 
+			Vector3 lanePosition = new Vector3(0, 0, nextLaneOffset + spawnStartOffset); 
 			nextLaneOffset += instance.transform.localScale.z;
 			instance.transform.position = lanePosition;
 		}	

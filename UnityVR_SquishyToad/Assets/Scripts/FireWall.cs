@@ -15,7 +15,7 @@ public class FireWall : MonoBehaviour {
 	private int prevLevel;
 	private int level;
 	private GameObject player;
-	private GameState state;
+	private GameState gameState;
 
 	// Use this for initialization
 	void Start () {
@@ -26,16 +26,16 @@ public class FireWall : MonoBehaviour {
 	void Update () {
 		//Gather the player object
 		player = GameObject.Find("player");
-		state = GameObject.FindObjectOfType<GameState>();
-		if(!state.IsGameOver) {
+        gameState = GameObject.FindObjectOfType<GameState>();
+		if(!gameState.IsIdle && !gameState.IsGameOver) {
 			//Makes the Fire Container object laterally follow the player.
 			FollowPlayer();
 			//Makes the Fire Container object creep towards the player while the game is not over.
 			CreepForward();
 			//Check if the fire is engulfing the player If so, game over.
 			if(isPlayerInside()) {
-				state.IsGameOver = true;
-				state.HighScore = (uint) transform.position.z;
+                gameState.IsGameOver = true;
+                gameState.HighScore = transform.position.z;
 				//print("You lose!");
 			}
 			//Informs the player when the level has gone up.
@@ -64,7 +64,7 @@ public class FireWall : MonoBehaviour {
         LevelUp.Play();
 		print("Level " + level + " | Speed increased.");
 		prevLevel = level;
-		state.CurLevel = level;
+        gameState.CurLevel = level;
 	}
 
 	bool isPlayerInside() {

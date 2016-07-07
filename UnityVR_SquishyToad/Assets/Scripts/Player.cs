@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; //THIS SHOULD BE REFACTORED OUT!!  [gameCoordinator]
 
 public class Player : MonoBehaviour {
 
-	public Text GazeText;
+    public Text GazeText;
+    public bool allowJump;                          //Check this to allow the player to move
 	public uint JumpVelocity;
 	public float JumpAngleInDegrees;
 	private Rigidbody rb;
@@ -21,10 +23,8 @@ public class Player : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 	}
 
-
-
-	private void PullTrigger() {
-		RequestJump();
+    private void PullTrigger() {
+		if(allowJump) RequestJump();
 	}
 	
 	private void RequestJump() {
@@ -65,9 +65,27 @@ public class Player : MonoBehaviour {
 			lastJumpRequestTime = 0;
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		FrogHead = FindObjectOfType<GvrHead>();
+        //Allow the player to start jumping if the game is being played (After the player presses the "Escape" button)
+        if (!gameState.IsIdle && !gameState.IsGameOver) allowJump = true;
+        else                                            allowJump = false;
+        
 	}
+
+    public void PlayerReady()       //THIS SHOULD BE REFACTORED OUT!! [gameCoordinator]
+    {
+        print("Player Ready");
+        gameState.IsIdle = false;
+    }
+
+    public void ResetGame()         //THIS SHOULD BE REFACTORED OUT!! [gameCoordinator]
+    {
+        SceneManager.LoadScene(1);
+        gameState.IsIdle = true;
+        gameState.IsGameOver = false;
+        print("Game Reset");
+    }
 }
