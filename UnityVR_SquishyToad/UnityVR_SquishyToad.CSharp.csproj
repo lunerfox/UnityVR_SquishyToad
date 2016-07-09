@@ -159,6 +159,7 @@
     <Compile Include="Assets\Scripts\GameState.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Spawners\CloudSpawner.cs" />
     <Compile Include="Assets\Scripts\Spawners\PwrUpSpawner.cs" />
     <Compile Include="Assets\Scripts\Spawners\Spawner.cs" />
     <Compile Include="Assets\Scripts\Spawners\VehicleSpawner.cs" />
