@@ -6,7 +6,8 @@ public class GameState : MonoBehaviour {
 
 	public bool IsGameOver   { get; set;}   //Game Over state is HIGH when the player has lost but has not restarted.
     public bool IsIdle       { get; set;}   //Idle state is HIGH when the player has restarted but not ready
-	public float HighScore    {get; set;}
+    //High Score is only recorded if the updated score is better then the high score.
+	public float HighScore    { get { return HighScore; } set { if (value > HighScore) HighScore = value; } }
 	public int CurLevel      {get; set;}
 
     //TODO: Separate power-ups into its own separate handler
