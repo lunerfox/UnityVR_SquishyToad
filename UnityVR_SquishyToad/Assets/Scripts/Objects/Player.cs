@@ -68,6 +68,7 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if (!gameState) SceneManager.LoadScene(0);  //Catches Null Exception of game state and just loads the beginning scene again.
 		FrogHead = FindObjectOfType<GvrHead>();
         //Allow the player to start jumping if the game is being played (After the player presses the "Escape" button)
         if (!gameState.IsIdle && !gameState.IsGameOver) allowJump = true;
